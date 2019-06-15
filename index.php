@@ -61,7 +61,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if(strlen($productivity)> '30'){
+		  if($productivity!="ประวัติการจับกุม 0 ครั้ง"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
