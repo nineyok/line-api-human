@@ -76,7 +76,8 @@ if($strchk[0]=="$"){
                       array_push($arrayloop,$arrPostData);
                   }
     }
-  }else{
+  }
+		  }else{
 	     if ($idcard != "") {
 			 
 		$request = urlencode($idcard);
@@ -124,7 +125,6 @@ if($strchk[0]=="$"){
                   }
     }
               }
-  }
 }
 }else if($strchk[0]=="H"){
   $arrstr  = explode( "H" , $strexp );
