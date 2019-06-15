@@ -59,9 +59,9 @@ if($strchk[0]=="$"){
 		$txt = "";
 		$txt = "เลขบัตร : ". $idcard . "\r\n"
                 . "" . $productivity;
-		$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
+		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="this user id doesn't exist!"){
+		  if($productivity!="ประวัติการจับกุม 0 ครั้ง"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -88,8 +88,8 @@ if($strchk[0]=="$"){
 	     if ($idcard != "") {
 			 
 		$request = urlencode($idcard);
-	    $request1 = substr($request, 0, -9);
-     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman_name.php?uid=".$request1;	 
+	    //$request1 = substr($request, 0, -9);
+     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman_name.php?uid=".$request;	 
      $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
@@ -114,9 +114,9 @@ if($strchk[0]=="$"){
 		$txt = "";
 		$txt = "คำค้น : ". $idcard . "\r\n"
                 . "" . $productivity;
-		$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
+		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="this user id doesn't exist!"){
+		  if($productivity!="ค้นหาพบ 0 คน"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
