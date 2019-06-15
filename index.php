@@ -13,7 +13,7 @@ $strexp = $arrJson['events'][0]['message']['text'];
 
    $id = $arrJson['events'][0]['source']['groupId'];
    
-   //if (($id == "C57ef75ec0b7162d316d8a127c1a1a53d") or ($id == "C16d90f20cabd2ca50d11165626aff0c6") or ($id == "C75d1acd2a65e031632f656fb0aba51b2") or ($id == "C6f6cec58173d7b991df098147b7c8bea")) {
+   if ($id == "C787c1d24b791fa24457c3101e5d050d5") {
 
 $strchk = str_split($strexp);
 
@@ -141,7 +141,7 @@ if($strchk[0]=="$"){
              	
 		$txt = "";
 		$txt = "'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
-					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น".$id;
+					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น";
 					
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
@@ -210,7 +210,7 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
-  //}
+  }
 		  
     function checkPID($pid) {
    if(strlen($pid) != 13) return false;
