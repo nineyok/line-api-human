@@ -59,6 +59,7 @@ if($strchk[0]=="$"){
 		$txt = "";
 		$txt = "เลขบัตร : ". $idcard . "\r\n"
                 . "" . $productivity;
+		$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
 		  if($productivity!="this user id doesn't exist!"){
                       $arrPostData = array();
@@ -76,7 +77,13 @@ if($strchk[0]=="$"){
                       array_push($arrayloop,$arrPostData);
                   }
     }
-  }
+  }else{
+                  $arrPostData = array();
+                  $arrPostData["idcard"] = $idcard;
+                  $arrPostData["detail"] = "เลขบัตรประชาชนไม่ถูกต้อง : ".$idcard;
+                  $arrPostData["status"] = "0";
+                  array_push($arrayloop,$arrPostData);
+              }
 		  }else{
 	     if ($idcard != "") {
 			 
@@ -107,6 +114,7 @@ if($strchk[0]=="$"){
 		$txt = "";
 		$txt = "คำค้น : ". $idcard . "\r\n"
                 . "" . $productivity;
+		$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
 		  if($productivity!="this user id doesn't exist!"){
                       $arrPostData = array();
