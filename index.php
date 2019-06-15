@@ -32,7 +32,7 @@ if($strchk[0]=="$"){
               }
             }
 	  if(is_numeric($idcard)){
-		  if(checkPID($idcard)){
+		  //if(checkPID($idcard)){
 	     if ($idcard != "") {
      $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman.php?uid=".$idcard;	 
      $isRequestHeader = FALSE;
@@ -77,13 +77,13 @@ if($strchk[0]=="$"){
                       array_push($arrayloop,$arrPostData);
                   }
     }
-  }else{
+/*   }else{
                   $arrPostData = array();
                   $arrPostData["idcard"] = $idcard;
                   $arrPostData["detail"] = "เลขบัตรประชาชนไม่ถูกต้อง : ".$idcard;
                   $arrPostData["status"] = "0";
                   array_push($arrayloop,$arrPostData);
-              }
+              } */
 		  }else{
 	     if ($idcard != "") {
 			 
