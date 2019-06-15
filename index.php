@@ -1,6 +1,6 @@
 <?php
 
-$strAccessToken = "8KKXb09F/89lBzY8yOcgezFynxFDbM+/BnZ5bTyiS9Xj59zzXZkXPET6UUU0BSSWXiLMuGk5cq5ZcNSjpdHjWwQ2Q4WL0S/cHncmGWunRPaY0LR0eMANsa6DnpQx/rfsJk41tJekEghWP0X4a3tYuwdB04t89/1O/w1cDnyilFU=";
+$strAccessToken = "W5DDSiantjZm2Syp8ykhF31Qssu4ENAmV31GEqcZ+cZwGfYi/UVBXq2M9u4BGDxs9l/n24N1ZPR3/vDPeBLhbUw3A87eT5sOh0dMLFHkh2Ofj9RTJrx8xpnBuDqUFCYWkj6xgz0jDmRfWmsH4cM3gwdB04t89/1O/w1cDnyilFU=";
 
 $content = file_get_contents('php://input');
 $arrJson = json_decode($content, true);
@@ -10,6 +10,11 @@ $arrHeader[] = "Content-Type: application/json";
 $arrHeader[] = "Authorization: Bearer {$strAccessToken}";
 $strexp = isset($_REQUEST['strexp']) ? $_REQUEST['strexp'] : '';
 $strexp = $arrJson['events'][0]['message']['text'];
+
+   $id = $arrJson['events'][0]['source']['groupId'];
+   
+   //if (($id == "C57ef75ec0b7162d316d8a127c1a1a53d") or ($id == "C16d90f20cabd2ca50d11165626aff0c6") or ($id == "C75d1acd2a65e031632f656fb0aba51b2") or ($id == "C6f6cec58173d7b991df098147b7c8bea")) {
+
 $strchk = str_split($strexp);
 
 $arrayloop = array();
@@ -27,6 +32,7 @@ if($strchk[0]=="$"){
               }
             }
 	  if(is_numeric($idcard)){
+		  if(checkPID($idcard)){
 	     if ($idcard != "") {
      $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman.php?uid=".$idcard;	 
      $isRequestHeader = FALSE;
@@ -48,11 +54,10 @@ if($strchk[0]=="$"){
 
 
 
-        $t_id = $arrbn_id[0]; //เลขบัตร
-	    $t_text = $arrbn_id[1]; //ประวัติการจับกุม
+	    $t_text = $arrbn_id[0]; //ประวัติการจับกุม
 		
 		$txt = "";
-		$txt = "เลขบัตร : ". $t_id . "\r\n"
+		$txt = "เลขบัตร : ". $idcard . "\r\n"
                 . "" . $t_text;
 		
 		  if($t_text!=""){
@@ -72,15 +77,73 @@ if($strchk[0]=="$"){
                   }
     }
   }else{
-                  $arrPostData = array();
-                  $arrPostData["idcard"] = $idcard;
-                  $arrPostData["detail"] = "ไม่พบข้อมูล : ".$idcard;
-                  $arrPostData["status"] = "0";
-                  array_push($arrayloop,$arrPostData);
+	     if ($idcard != "") {
+			 
+		$request = urlencode($idcard);
+	    $request1 = substr($request, 0, -9);
+     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman_name.php?uid=".$request1;	 
+     $isRequestHeader = FALSE;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $productivity = curl_exec($ch);
+        curl_close($ch);
+        //$json_a = json_decode($productivity, true);
+        $arrbn_id = explode("#", $productivity);
+        //print_r($arrbn_id);
+//        if (is_numeric(substr($arrbn_id[0], 0, 1))) {
+
+//        echo $objResult["customer_name"];
+//        echo "#" . $objResult["Latitude"];
+//        echo "#" . $objResult["Longitude"];
+//        echo "#" . $objResult["province"];
+//        echo "#" . $objResult["contact_tel"];
+
+
+
+	    $t_text = $arrbn_id[0]; //ประวัติการจับกุม
+		
+		$txt = "";
+		$txt = "คำค้น : ". $idcard . "\r\n"
+                . "" . $t_text;
+		
+		  if($t_text!=""){
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+                  }else{
+                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = "0";
+                      array_push($arrayloop,$arrPostData);
+                  }
+    }
               }
   }
 }
+}else if($strchk[0]=="H"){
+  $arrstr  = explode( "H" , $strexp );
+  for($k=1 ; $k < count( $arrstr ) ; $k++ ){
+      $strchk = "H".$arrstr[$k];
+             	
+		$txt = "";
+		$txt = "'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
+					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น".$id;
+					
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+ 
 
+  }
+}
 
 $arrPostData = array();
 $arrPostData['replyToken'] = $arrJson['events'][0]['replyToken'];
@@ -139,6 +202,16 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
+  //}
+		  
+    function checkPID($pid) {
+   if(strlen($pid) != 13) return false;
+      for($i=0, $sum=0; $i<12;$i++)
+      $sum += (int)($pid{$i})*(13-$i);
+      if((11-($sum%11))%10 == (int)($pid{12}))
+      return true;
+   return false;
+}
 ?>
 
 
