@@ -42,7 +42,7 @@ if($strchk[0]=="$"){
         $productivity = curl_exec($ch);
         curl_close($ch);
         //$json_a = json_decode($productivity, true);
-        $arrbn_id = explode("#", $productivity);
+        //$arrbn_id = explode("#", $productivity);
         //print_r($arrbn_id);
 //        if (is_numeric(substr($arrbn_id[0], 0, 1))) {
 
@@ -54,13 +54,13 @@ if($strchk[0]=="$"){
 
 
 
-	    $t_text = $arrbn_id[0]; //ประวัติการจับกุม
+	    //$t_text = $arrbn_id[0]; //ประวัติการจับกุม
 		
 		$txt = "";
 		$txt = "เลขบัตร : ". $idcard . "\r\n"
-                . "" . $t_text;
+                . "" . $productivity;
 		
-		  if($t_text!=""){
+		  if($productivity!="this user id doesn't exist!"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -90,7 +90,7 @@ if($strchk[0]=="$"){
         $productivity = curl_exec($ch);
         curl_close($ch);
         //$json_a = json_decode($productivity, true);
-        $arrbn_id = explode("#", $productivity);
+        //$arrbn_id = explode("#", $productivity);
         //print_r($arrbn_id);
 //        if (is_numeric(substr($arrbn_id[0], 0, 1))) {
 
@@ -102,13 +102,13 @@ if($strchk[0]=="$"){
 
 
 
-	    $t_text = $arrbn_id[0]; //ประวัติการจับกุม
+	    //$t_text = $arrbn_id[0]; //ประวัติการจับกุม
 		
 		$txt = "";
 		$txt = "คำค้น : ". $idcard . "\r\n"
-                . "" . $t_text;
+                . "" . $productivity;
 		
-		  if($t_text!=""){
+		  if($productivity!="this user id doesn't exist!"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
