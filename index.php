@@ -24,7 +24,7 @@ if($strchk[0]=="$"){
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
       $strchk = "$".$arrstr[$k];
       $idcard = substr($strchk,1);
-      $chkid = substr($idcard,0,10);
+      $chkid = substr($idcard,0,13);
 	   if(is_numeric($chkid)){
               $countid = strlen($chkid);
               if($countid == "10"){
