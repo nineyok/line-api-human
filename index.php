@@ -141,10 +141,13 @@ if($strchk[0]=="$"){
       $idcard = substr($strchk,1);
 
      if ($idcard != "") {
-			 
-		$request = urlencode($idcard);
+		 
+		$text_output= explode(" ", $idcard);
+		
+		$request = urlencode($text_output[0]);
+		$request1 = urlencode($text_output[1]);
 
-        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request;
+        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request."&aid=".$request1;
         $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
@@ -157,7 +160,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="ค้นหาพบ 0 หมู่บ้าน"){
+		  if($productivity!="พบ 0 หมู่"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
