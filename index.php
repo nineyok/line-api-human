@@ -144,10 +144,12 @@ if($strchk[0]=="$"){
 		 
 		$text_output= explode(" ", $idcard);
 		
-		$request = urlencode($text_output[0]);
-		$request1 = urlencode($text_output[1]);
+		$request1 = urlencode($text_output[0]);
+		$request2 = urlencode($text_output[1]);
+		$request11 = substr($request1, 0, -9);
+		$request22 = substr($request2, 0, -9);
 
-        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request."&aid=".$request1;
+        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request11."&aid=".$request22;
         $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
@@ -184,7 +186,7 @@ if($strchk[0]=="$"){
       $strchk = "H".$arrstr[$k];
              	
 		$txt = "";
-		$txt = "'#'ตามด้วย ชื่อตำบล เช็คชื่อและเบอร์โทรของ กำนัน,ผญบ. ทั้งตำบล" . "\r\n"
+		$txt = "'#'ตามด้วย ชื่อตำบล เว้นวรรค ชื่ออำเภอ เช็คชื่อและเบอร์โทรของ กำนัน,ผญบ. ทั้งตำบล" . "\r\n"
 		            ."'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
 					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น" . "\r\n"
 					. "คำค้นแสดงมากสุดสุดได้แค่ 27 คนเท่านั้น";
