@@ -134,13 +134,55 @@ if($strchk[0]=="$"){
     }
               }
 }
+}else if($strchk[0]=="#"){
+  $arrstr  = explode( "#" , $strexp );
+  for($k=1 ; $k < count( $arrstr ) ; $k++ ){
+      $strchk = "#".$arrstr[$k];
+      $idcard = substr($strchk,1);
+
+     if ($idcard != "") {
+			 
+		$request = urlencode($idcard);
+
+        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request;
+        $isRequestHeader = FALSE;
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $productivity = curl_exec($ch);
+        curl_close($ch);
+
+       	$txt = "";
+		$txt = "คำค้น : ". $idcard . "\r\n"
+                . "" . $productivity;
+		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
+		
+		  if($productivity!="ค้นหาพบ 0 หมู่บ้าน"){
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = $status;
+                      array_push($arrayloop,$arrPostData);
+                  }else{
+                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      
+                      $arrPostData = array();
+                      $arrPostData["idcard"] = $idcard;
+                      $arrPostData["detail"] = $txt;
+                      $arrPostData["status"] = "0";
+                      array_push($arrayloop,$arrPostData);
+                  }
+	 }
+
+  }
 }else if($strchk[0]=="H"){
   $arrstr  = explode( "H" , $strexp );
   for($k=1 ; $k < count( $arrstr ) ; $k++ ){
       $strchk = "H".$arrstr[$k];
              	
 		$txt = "";
-		$txt = "'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
+		$txt = "'#'ตามด้วย ชื่อตำบล เช็คชื่อและเบอร์โทรของ กำนัน,ผญบ. ทั้งตำบล" . "\r\n"
+		            ."'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
 					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น" . "\r\n"
 					. "คำค้นแสดงมากสุดสุดได้แค่ 27 คนเท่านั้น";
 					
