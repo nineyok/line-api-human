@@ -61,7 +61,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="ประวัติการจับกุม 0 ครั้ง"){
+		  if($productivity!="จับกุม 0 ครั้ง"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -116,7 +116,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="ค้นหาพบ 0 คน"){
+		  if($productivity!="พบ 0 คน"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -189,7 +189,7 @@ if($strchk[0]=="$"){
 		$txt = "'#'ตามด้วย ชื่อตำบล เว้นวรรค ชื่ออำเภอ เช็คชื่อและเบอร์โทรของ กำนัน,ผญบ. ทั้งตำบล" . "\r\n"
 		            ."'$'ตามด้วย 13 หลัก เช็คประวัติการจับกุม" . "\r\n"
 					. "ถ้าจำ 13 หลักไม่ได้ให้ใส่คำค้นหลัง '$'เพื่อเอา 13 หลักมาค้น" . "\r\n"
-					. "คำค้นแสดงมากสุดสุดได้แค่ 35 คนเท่านั้น";
+					. "คำค้นแสดงมากสุดสุดได้แค่ 45 คนเท่านั้น";
 					
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
