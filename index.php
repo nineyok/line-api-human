@@ -149,7 +149,7 @@ if($strchk[0]=="$"){
 		$request11 = substr($request1, 0, -9);
 		$request22 = substr($request2, 0, -9);
 
-        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request1."&aid=".$request22;
+        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request11."&aid=".$request2;
         $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
