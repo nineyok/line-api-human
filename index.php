@@ -27,7 +27,7 @@ if($strchk[0]=="$"){
       $chkid = substr($idcard,0,13);
 	   if(is_numeric($chkid)){
               $countid = strlen($chkid);
-              if($countid == "10"){
+              if($countid == "13"){
                 $idcard = $chkid;
               }
             }
