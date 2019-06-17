@@ -60,7 +60,7 @@ if($strchk[0]=="$"){
                 . "" .  $t_text;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($t_text!=""){
+		  if($t_text!="จับกุม 0 ครั้ง"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
