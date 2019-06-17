@@ -32,7 +32,6 @@ if($strchk[0]=="$"){
               }
             }
 	  if(is_numeric($idcard)){
-		  //if(checkPID($idcard)){
 	     if ($idcard != "") {
      $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman.php?uid=".$idcard;	 
      $isRequestHeader = FALSE;
@@ -42,7 +41,7 @@ if($strchk[0]=="$"){
         $productivity = curl_exec($ch);
         curl_close($ch);
         //$json_a = json_decode($productivity, true);
-        //$arrbn_id = explode("#", $productivity);
+        $arrbn_id = explode("#", $productivity);
         //print_r($arrbn_id);
 //        if (is_numeric(substr($arrbn_id[0], 0, 1))) {
 
@@ -54,14 +53,14 @@ if($strchk[0]=="$"){
 
 
 
-	    //$t_text = $arrbn_id[0]; //ประวัติการจับกุม
+	    $t_text = $arrbn_id[1]; //ประวัติการจับกุม
 		
 		$txt = "";
 		$txt = "เลขบัตร : ". $idcard . "\r\n"
-                . "" . $productivity;
+                . "" .  $t_text;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!=""){
+		  if($t_text!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -116,7 +115,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!=""){
+		  if($productivity!="พบ 0 คน"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -162,7 +161,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!=""){
+		  if($productivity!="พบ 0 หมู่"){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -258,15 +257,6 @@ function getContentUrl($url) {
             curl_close ($ch);
             return $file;
           } 
-  }
-		  
-    function checkPID($pid) {
-   if(strlen($pid) != 13) return false;
-      for($i=0, $sum=0; $i<12;$i++)
-      $sum += (int)($pid{$i})*(13-$i);
-      if((11-($sum%11))%10 == (int)($pid{12}))
-      return true;
-   return false;
 }
 ?>
 
