@@ -68,8 +68,8 @@ if($strchk[0]=="$"){
                       $arrPostData["status"] = $status;
                       array_push($arrayloop,$arrPostData);
                   }else{
-                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
-                      
+                      $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      $txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -123,8 +123,8 @@ if($strchk[0]=="$"){
                       $arrPostData["status"] = $status;
                       array_push($arrayloop,$arrPostData);
                   }else{
-                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
-                      
+                      $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      $txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -169,8 +169,8 @@ if($strchk[0]=="$"){
                       $arrPostData["status"] = $status;
                       array_push($arrayloop,$arrPostData);
                   }else{
-                    $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
-                      
+                      $txt = "ไม่พบข้อมูลที่ค้นหา : ".$idcard;
+                      $txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
