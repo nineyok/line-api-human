@@ -63,7 +63,7 @@ if($strchk[0]=="$"){
 		  if($t_text!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
-                      $arrPostData["detail"] = $txt;
+                      $arrPostData["detail"] = $urlWithoutProtocol;
                       $arrPostData["status"] = $status;
                       array_push($arrayloop,$arrPostData);
                   }else{
@@ -71,7 +71,7 @@ if($strchk[0]=="$"){
                       //$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
-                      $arrPostData["detail"] = $txt;
+                      $arrPostData["detail"] = $urlWithoutProtocol;
                       $arrPostData["status"] = "0";
                       array_push($arrayloop,$arrPostData);
                   }
