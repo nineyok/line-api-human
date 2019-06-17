@@ -61,7 +61,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="จับกุม 0 ครั้ง"){
+		  if($productivity!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -116,7 +116,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="พบ 0 คน"){
+		  if($productivity!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
@@ -162,7 +162,7 @@ if($strchk[0]=="$"){
                 . "" . $productivity;
 		//$txt = preg_replace("/\r\n|\r|\n/", ' ', $txt); 
 		
-		  if($productivity!="พบ 0 หมู่"){
+		  if($productivity!=""){
                       $arrPostData = array();
                       $arrPostData["idcard"] = $idcard;
                       $arrPostData["detail"] = $txt;
