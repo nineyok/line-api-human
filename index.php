@@ -33,7 +33,7 @@ if($strchk[0]=="$"){
             }
 	  if(is_numeric($idcard)){
 	     if ($idcard != "") {
-     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman.php?uid=".$idcard;	 
+     $urlWithoutProtocol = "http://line.donot.xyz:18080/select_huaman.php?uid=".$idcard;	 
      $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
@@ -88,7 +88,7 @@ if($strchk[0]=="$"){
 			 
 		$request = urlencode($idcard);
 	    //$request1 = substr($request, 0, -9);
-     $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_huaman_name.php?uid=".$request;	 
+     $urlWithoutProtocol = "http://line.donot.xyz:18080/select_huaman_name.php?uid=".$request;	 
      $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
@@ -148,7 +148,7 @@ if($strchk[0]=="$"){
 		$request11 = substr($request1, 0, -9);
 		$request22 = substr($request2, 0, -9);
 
-        $urlWithoutProtocol = "http://vpn.idms.pw/id_pdc/select_buriram.php?uid=".$request11."&aid=".$request2;
+        $urlWithoutProtocol = "http://line.donot.xyz:18080/select_buriram.php?uid=".$request11."&aid=".$request2;
         $isRequestHeader = FALSE;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $urlWithoutProtocol);
